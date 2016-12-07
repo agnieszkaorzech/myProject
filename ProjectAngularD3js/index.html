@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+  <head>
+  <meta charset = "utf-8">
+    <title>Chart</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <link href="style.css" rel="stylesheet">
+     <script src="http://d3js.org/d3.v3.min.js"></script>
+     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.js"></script>
+	   <script src="index.js"></script>
+   </head>
+  <body ng-controller="MainCtrl as mainCtrl">
+    <div class="container">
+      <div class="jumbotron" style="text-align:center;">
+          <h1>Stock market analysis</h1>
+      </div>
+     <div style="float:left;width:20%;">
+       <ul class="nav nav-pills nav-stacked">
+          <li class="btn btn-default active"><a href="#">Menu</a></li>
+          <li class="btn btn-default" ng-click="mainCtrl.open('first')"><a href="#">Data analysis</a></li>
+          <li class="btn btn-default" ng-click="mainCtrl.open('second')"><a href="#">Plot</a></li>
+        </ul>
+     </div>
+     <div class="row" style="float:right;width:80%" ng-switch on="mainCtrl.tab">
+     <div ng-switch-when="first" class="row" ng-controller="datasController">
+        <div class="col-sm-11 center-block">
+          <h1>Data presentation</h1>
+      <div class="well">
+          <h3>Add new stock</h3>
+          <form ng-submit="addStock()" class="form-inline">
+            <input class="btn btn-default" type="text" placeholder="Symbol" ng-model="newStock.Symbol"/>
+            <input class="btn btn-default" type="text" placeholder="Date" ng-model="newStock.Date"/>
+            <input class="btn btn-default" type="text" placeholder="Open" ng-model="newStock.Open"/>
+            <input class="btn btn-default" type="text" placeholder="High" ng-model="newStock.High"/>
+            <input class="btn btn-default" type="text" placeholder="Low" ng-model="newStock.Low"/>
+            <input class="btn btn-default"type="text" placeholder="Close" ng-model="newStock.Close"/>
+            <input class="btn btn-default" type="text" placeholder="Volume" ng-model="newStock.Volume"/>
+            <input class="btn btn-default" type="text" placeholder="Adjust" ng-model="newStock.Adj_Close"/>
+            <input class="btn btn-primary" type="submit" value="Add stock to list">
+          </form>
+      </div>
+        <br>
+            <div class="input-group">
+              <span class="input-group-addon">Search:</span>
+              <input type="text" class="form-control" placeholder="What are you looking for?" ng-model="itemFilter"/>
+            </div>
+            <br>
+              <button class="btn btn-success" ng-click="submit()">Create plot for checked items</button>
+              <br>
+            <div class="create-plot" ng-show="divVisible"></div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th ng-repeat = "headers in [
+                     'x','Symbol','Date','Open','High','Low','Close','Volume','Adj_Close',''
+                    ]" ng-bind="headers">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat = "stock in stocks| filter :itemFilter">
+                    <th><input type="checkbox" ng-model="stock.checked"></th>
+                    <th>{{stock.Symbol}}</th>
+                    <th>{{stock.Date}}</th>
+                    <th>{{stock.Open|currency :'€ '}}</th>
+                    <th>{{stock.High|currency :'€ '}}</th>
+                    <th>{{stock.Low|currency :'€ '}}</th>
+                    <th>{{stock.Close|currency :'€ '}}</th>
+                    <th>{{stock.Volume}}</th>
+                    <th>{{stock.Adj_Close|currency :'€ '}}</th>
+                    <td>
+                      <a ng-click="deleteItem($index)">x</a>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+      <div class="second-tab" ng-switch-when="second" ng-controller="plotController">
+      <div class="second-tab1"><h3>CSCO</h3></div>
+      <div class="second-tab2"><h3>ADBE</h3></div>
+      <div class="second-tab3"><h3>MSFT</h3></div>
+      </div>
+    </div>
+      <div style="clear:both;"></div>
+    </div>
+ </body>
+</html>
