@@ -1,0 +1,60 @@
+<div data-role="iwworkplacewindow"
+     data-width="640"
+     data-height="390"
+     data-min-height="200"
+     data-min-width="400"
+     data-title="Kolejka zadań"
+     data-bind="window_visible: isVisible">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false,
+                size: '25px'
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                scrollable:true
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                size: '50px'
+                }]"
+         class="iw-spliter">
+        <div class="menu-emuia"
+             data-role="menu">Przegląd kolejki zadań
+        </div>
+        <div>
+            <div class="grid-kolejka-zadan"
+                 data-role="grid"
+                 data-columns="
+                                 [{field: 'orderDate', title: 'Data zamówienia', width: 150},
+                                 {field: 'aktualiz', title: 'Ostatnia aktualizacja',width: 80 },
+                                 {field: 'dataZak', title: 'Data zakończenia', width: 80},
+                                 {field: 'status',title: 'Status',width: 100},
+                                 {field: 'taskType', title: 'Typ zadania',width: 115},
+                                 {field: 'wynik',title: 'Wynik',width: 50}]"
+                 data-filterable="false"
+                 data-auto-bind="true"
+                 data-selectable="multiple"
+                 data-resizable="true"
+                 data-sortable="true"
+                 data-bind="source: kolejkaZadanDataSource,events: {change: onGridChange}">
+            </div>
+        </div>
+        <div class="iw-group-buttons">
+            <hr>
+            <button data-role="button"
+                    data-bind="events: { click: onUsun}">
+                <span class="iw-icon iw-icon-usun iw-icon12 iw-icon-menu-dialog"></span>Usuń zaznaczone
+            </button>
+            <button data-role="button"
+                    data-bind="events: { click: onOdswiezGrid }">
+                <span class="iw-icon iw-icon-refresh iw-icon12 iw-icon-menu-dialog"></span>Odśwież
+            </button>
+        </div>
+    </div>
+</div>

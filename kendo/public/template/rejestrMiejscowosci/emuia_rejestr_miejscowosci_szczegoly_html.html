@@ -1,0 +1,86 @@
+<div class="iwEmuiaWindow"
+     data-role="iwworkplacewindow"
+     data-title="Szczegóły miejscowości"
+     data-width="520px"
+     data-height="330px"
+     data-min-width="200"
+     data-min-height="200"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            scrollable:true
+            }
+           ]"
+         class="iw-spliter">
+        <div>
+            <fieldset>
+                <table class="iw-infotable">
+                    <tbody>
+                    <tr>
+                        <th class="textSzczegoly">Nazwa miejscowości:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.Nazwa"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Gmina:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.NazwaGmina"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Kraj:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.NazwaKraj"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Obręby powiązane z miejscowością:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.ObrebyString"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Rodzaj:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.NazwaRodzMsc"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Powierzchnia:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.Pow"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Współrzędna X:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.WspX"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Współrzędna Y:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.WspY"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Identyfikator w TERYT:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.IdentyfikatorWTeryt"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Nazwa miejscowości w języku mniejszości:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.NazwaMniejsz"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Nazwa języka mniejszości:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.JezykMniejsz"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Data ustanowienia miejscowości:</th>
+                        <td class="bindTextSzczegoly"
+                            data-bind="text: data.WaznyOdString"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Data prawnego włączenia miejscowości do innej lub zmiany jej
+                            rodzaju:</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.WaznyDoString"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly">Sygnatura dokumentu</th>
+                        <td class="bindTextSzczegoly" data-bind="text: data.DokSygnatura"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>

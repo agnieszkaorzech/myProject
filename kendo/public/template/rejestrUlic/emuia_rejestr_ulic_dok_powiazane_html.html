@@ -1,0 +1,105 @@
+<div class="emuiaRejestrUlic"
+     data-role="iwworkplacewindow"
+     data-title="Dokumenty powiązane z ulicą"
+     data-bind="window_visible: isVisible"
+     data-width="550"
+     data-height="250"
+     data-min-height="200"
+     data-navigatable="true">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            size: '30px'},
+            {
+            collapsible: false,
+            resizable: false,
+            scrollable: false}
+            ]"
+         class="iw-spliter">
+        <div id="top-pane" style="overflow: visible;">
+            <div class="pane-content">
+                <div>
+                    <ul data-role="menu"
+                        data-bind="events: { select: onMenuSelect }">
+                        <li data-menu-id="dodajDokument"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Dodaj nowy dokument">
+                            <span class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon14 "></span>
+                        </li>
+                        <li data-menu-id="edytujDokument"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Edytuj dokument">
+                            <span class="iw-icon iw-icon-edycja iw-icon-color-edycja iw-icon14 "></span>
+                        </li>
+                        <li data-menu-id="usunDokument"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Usuń dokument">
+                            <span class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon-menu-dialog iw-icon14 "></span>
+                        </li>
+                        <li data-menu-id="pokazArchiwizowane"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Zobacz archiwalne dokumenty">
+                            <span class="iw-icon iw-icon-archiwum  iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="toArchiwum"
+                            data-title="Przenieś do stanu archiwalnego"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top">
+                            <span class="iw-icon iw-icon-archiwum-usun iw-icon-color-edycja  iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="fromArchiwum"
+                            data-title="Przywróć z archiwum"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top">
+                            <span class="iw-icon iw-icon-archiwum-dodaj iw-icon-green iw-icon14 "></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div data-role="grid"
+             data-auto-bind="false"
+             data-columns="
+                    [{
+                    field: 'Sygnatura',
+                    title: 'Dokument',
+                    width:  100
+                    }, {
+                    field: 'DataD',
+                    title: 'Data dodania',
+                    width:  80
+                    },{
+                    field: 'NazwaUserD',
+                    title: 'Dodał',
+                    width:  90
+                    },{
+                    field: 'DataK',
+                    title: 'Data kasowania',
+                     width:  90
+                    },{
+                    field: 'NazwaUserK',
+                    title: 'Wykasował',
+                    width: 90
+                    }]"
+             data-selectable="row"
+             data-resizable="true"
+             data-sortable="true"
+             data-bind="source: dokumentyDataSource,
+                                events:{change:onGridChange, dataBound:onDataBound}"
+             style="height: 100%; width: 100%;">
+        </div>
+    </div>
+</div>

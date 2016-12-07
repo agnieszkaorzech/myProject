@@ -1,0 +1,15 @@
+<div data-role="iwworkplacewindow"
+     data-title="Ustawienia"
+     data-bind="window_visible: isVisible"
+     data-width="400"
+     data-height="320"
+     data-min-height="200"
+     data-min-width="200"
+     data-navigatable="true">
+    <div>
+        <button data-role="button"
+                data-bind="enabled: isEnabled, events: { click: onCreateGmlViewWindow}">
+            <span class="iw-icon iw-icon-edycja iw-icon12 iw-icon-menu-dialog"></span>Edytuj przestrzeń nazw GML
+        </button>
+    </div>
+</div>

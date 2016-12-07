@@ -1,0 +1,82 @@
+<div class="js-dodajEdytujRejestrUlicEmuia"
+     data-title="Dodaj ulicę"
+     data-role="iwworkplacewindow"
+     data-width="330px"
+     data-height="300px"
+     data-min-height="200px"
+     data-min-width="200px"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false
+             },
+            {
+            collapsible: false,
+            resizable: false,
+            size :'40px'
+            }]"
+         class="iw-spliter">
+        <div class="box-table-2">
+            <fieldset>
+                <table class="dodaj-ulice">
+                    <tr>
+                        <td class="textSzczegoly2">Ulica:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulicaNazwa"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Numer:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.numer"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Kod pocztowy:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.kodPoczt"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Status:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="Symbol"
+                                   data-text-field="Nazwa"
+                                   data-bind="value: value.status,
+                                               source:adresStatus}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2" style=" height: 90px;">Uwagi:</td>
+                        <td class="bindTextSzczegoly2" style=" height: 90px;">
+                            <textarea class="k-textbox"
+                                      name="uwagi"
+                                      cols="1"
+                                      rows="4"
+                                      data-bind="value: value.uwagi"
+                                      style=" height: 80px;width: 90%;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="checkbox">
+                            <label>
+                                <input type="checkbox"
+                                       data-bind="checked: isChecked"/>Kod pocztowy pochodzi z EMUiA
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onClearAndHide">Anuluj</button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onSave">Zapisz</button>
+        </div>
+    </div>
+</div>

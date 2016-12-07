@@ -1,0 +1,172 @@
+<div class="iwEmuiaWindow"
+     data-title="Dodaj miejscowość"
+     data-role="iwworkplacewindow"
+     data-width="480px"
+     data-height="570px"
+     data-min-height="500"
+     data-min-width="200"
+     data-bind="window_visible: isVisible, events:{close:windowClose}">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false
+             },{
+            collapsible: false,
+            resizable: false,
+            size :'40px'
+            }]"
+         class="iw-spliter">
+        <div class="box-table-2">
+            <fieldset>
+                <table>
+                    <tr>
+                        <td class="textSzczegoly">Nazwa:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox"
+                                   pattern="[A-z ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{1,}"
+                                   data-bind="value: value.nazwa"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">ID w TERYT:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox"
+                                   pattern="[0-9]{7}"
+                                   data-bind="value: value.idteryt_sym"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Gmina:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="Id"
+                                   data-text-field="Nazwa"
+                                   data-bind="source:slownikGminy,
+                                              value:value.gmina,
+                                              enabled: isEnabled"
+                                   style="width: 90%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Kraj:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-auto-bind="true"
+                                   data-value-primitive="true"
+                                   data-text-field="Nazwa"
+                                   data-value-field="Id"
+                                   data-bind="source:slownikKraj,value:value.kraj"
+                                   style="width: 90%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Rodzaj:</td>
+                        <td class="bindTextSzczegoly">
+                            <input data-role="dropdownlist"
+                                   class="inputDropdownlist"
+                                   data-text-field="Nazwa"
+                                   data-value-primitive="true"
+                                   data-value-field="Id"
+                                   data-bind="source: slownikRodzaj, value:value.rodz_msc_id"
+                                   style="width: 90%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Nazwa miejscowości w języku mniejszości:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox"
+                                   pattern="[A-z ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{1,}"
+                                   data-bind="text: value.jezyk_mniejszosci"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Nazwa języka mniejszości:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox"
+                                   pattern="[A-z ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]{1,}"
+                                   data-bind="value: value.nazwa_mniejszosci"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Nazwa w TERYT:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox"
+                                   pattern="[0-9]{7}"
+                                   data-bind="value: value.nazwa_teryt"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Powierzchnia:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox"
+                                   pattern="[0-9.]{1,}"
+                                   data-bind="value: value.pow"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Współrzędna X:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox is-enabled-input"
+                                   pattern="[0-9.]{1,}"
+                                   data-bind="value: value.wspx,
+                                               enabled:isEnableXYDok"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Współrzędna Y:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox is-enabled-input"
+                                   pattern="[0-9.]{1,}"
+                                   data-bind="value: value.wspy,
+                                              enabled:isEnableXYDok"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Sygnatura dokumentu:</td>
+                        <td class="bindTextSzczegoly">
+                            <input class="k-textbox is-enabled-input"
+                                   pattern="[0-9.]{1,}"
+                                   data-bind="value: value.sygnDok,
+                                              enabled:isEnableXYDok"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Data ustanowienia miejscowości:</td>
+                        <td class="bindTextSzczegoly">
+                            <input data-role="datepicker"
+                                   data-format="yyyy-MM-dd"
+                                   data-bind="value: value.wazny_od"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly">Data prawnego włączenia miejscowości do innej lub zmiany jej
+                            rodzaju:
+                        </td>
+                        <td class="bindTextSzczegoly">
+                            <input data-role="datepicker"
+                                   data-format="yyyy-MM-dd"
+                                   data-bind="value: value.wazny_do"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly" style=" height: 100px;">Obręby powiązane z miejscowością:</td>
+                        <td class="bindTextSzczegoly" style=" height: 100px;">
+                            <select data-role="multiselect"
+                                    data-text-field="nazwa"
+                                    data-value-primitive="false"
+                                    data-value-field="id"
+                                    data-bind="source: slownikObreby,
+                                               visible: isVisibleMultiselect,
+                                               enabled: isEnabled,
+                                               value: obrebySelected"></select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onClearAndHide">
+                Anuluj
+            </button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onSave">
+                Zapisz
+            </button>
+        </div>
+    </div>
+</div>

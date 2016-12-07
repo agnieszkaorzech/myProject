@@ -1,0 +1,212 @@
+<div class="js-dodajEdytujRejestrUlicEmuia"
+     data-role="iwworkplacewindow"
+     data-width="410px"
+     data-height="490px"
+     data-min-height="200px"
+     data-min-width="200px"
+     data-bind="window_visible: isVisible, window_title: title, events:{close:windowClose}"
+     data-actions="['Close']">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false
+             },
+            {
+            collapsible: false,
+            resizable: false,
+            size :'40px'
+            }]"
+         class="iw-spliter">
+        <div class="box-table-2">
+            <fieldset>
+                <table class="dodaj-ulice">
+                    <tr>
+                        <td class="textSzczegoly2">Rodzaj:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="Id"
+                                   data-text-field="Nazwa"
+                                   data-bind="source:rodzajUlicy, value:value.rodzUlSelect"
+                                   style="width: 80%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Przedrostek:</td>
+                        <td class="bindTextSzczegoly2">
+                             <span data-role="tooltip"
+                                   data-auto-hide="true"
+                                   data-position="top"
+                                   data-width="300px"
+                                   data-content="W polu przechowuje się elementy NAZWY takie jak Most, Plac, Rondo, Aleja, Skwer, Bulwar, Osiedle i inne">
+                            <input class="k-textbox"
+                                   data-bind="value: value.przedrostek1"/></span>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Przedrostek 2:</td>
+                        <td class="bindTextSzczegoly2">
+                              <span data-role="tooltip"
+                                    data-auto-hide="true"
+                                    data-position="top"
+                                    data-width="350px"
+                                    data-content="W polu przechowuje się tytuł, stopień, funkcja osoby wskazanej w nazwie w formie pełnej lub skróconej z zachowaniem norm językowych, np. Księdza, Biskupa, Generała, Marszałka, Inżyniera, Królowej, Świętej itp.">
+                            <input class="k-textbox"
+                                   data-bind="text: value.przedrostek2"/></span></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Nazwa część:</td>
+                        <td class="bindTextSzczegoly2">
+                            <span data-role="tooltip"
+                                  data-auto-hide="true"
+                                  data-position="top"
+                                  data-width="300px"
+                                  data-content="W polu przechowuje się imię lub imiona osoby wskazanej w 'Nazwie Głównej' np.Adama; odmiana przyjmuje rodzaj biernika.">
+                            <input class="k-textbox"
+                                   data-bind="value: value.nazwaCzesc1"/></span></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Nazwa główna:</td>
+                        <td class="bindTextSzczegoly2">
+                            <span data-role="tooltip"
+                                  data-auto-hide="true"
+                                  data-position="top"
+                                  data-width="300px"
+                                  data-content="W polu przechowuje się główny człon nazwy ulicy - nazwa własna, nazwisko osoby, pseudonim lub pełna nazwa organizacji np. Żółwiowa, Mickiewicza">
+                            <input class="k-textbox"
+                                   data-bind="value: value.nazwaGlowna,
+                                                             events:{change:autocompleData}"/></span></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Pełna nazwa ulicy:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulFullName,
+                                                            events:{change:changeToUpperCase}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Skrócona nazwa ulicy:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulShortName"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Nazwa w PESEL:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulPesel"
+                                   style="text-transform: uppercase;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Nazwa w TERYT:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulTeryt"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Symbol ulicy w TERYT:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulNr"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Nazwa w mniejszości:</td>
+                        <td class="bindTextSzczegoly2">
+                            <span data-role="tooltip"
+                                  data-auto-hide="true"
+                                  data-position="top"
+                                  data-width="300px"
+                                  data-content="Tradycyjna nazwa miejscowości lub jej część w języku/ach mniejszości narodowych">
+                            <input class="k-textbox"
+                                   data-bind="value: value.nazwaMniejszosci"/></span></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Status:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="Symbol"
+                                   data-text-field="Nazwa"
+                                   data-bind="source:ulicaStatus, value: value.ulStatus"
+                                   style="width: 80%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Ważny od:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input data-role="datepicker"
+                                   data-format="yyyy-MM-dd"
+                                   data-bind="value: value.waznyOd"
+                                   style="width: 80%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Ważny do:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input data-role="datepicker"
+                                   data-format="yyyy-MM-dd"
+                                   data-bind="value: value.waznyDo"
+                                   style="width: 80%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2" data-bind="visible:isVisibleButton">Dokument:</td>
+                        <td class="bindTextSzczegoly2" data-bind="visible:isVisibleButton">
+                            <button class="k-button"
+                                    data-bind="value: value.dokId,
+                                               click: onDodajDokument"
+                                    style="width: 80%;">Wybierz dokument
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2" style=" height:120px;" data-bind="visible:isVisibleGrid">Dokument:
+                        </td>
+                        <td class="bindTextSzczegoly2" style=" height: 120px;" data-bind="visible:isVisibleGrid">
+                            <div class="pane-content">
+                                <ul data-role="menu"
+                                    data-bind="events: { select: onMenuSelect }">
+                                    <li data-menu-id="dodajDok"
+                                        data-title="Dodaj dokument do listy"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top">
+                                        <i class="iw-icon iw-icon-dodaj iw-icon12 iw-icon-red"></i>
+                                    </li>
+                                    <li data-menu-id="usunDok"
+                                        data-title="Usuń dokument z listy"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top">
+                                        <i class="iw-icon iw-icon-minus iw-icon12 iw-icon-red"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="js-grid-edycja-dodaj"
+                                 data-role='grid'
+                                 data-columns="
+                                 [{
+                                    field: 'NazwaRodzDok',
+                                    title: 'Dokument'
+                                 },{
+                                    field: 'Sygnatura',
+                                    title: 'Sygnatura'
+                                 }]"
+                                 data-selectable="row"
+                                 data-resizable="true"
+                                 data-sortable="true"
+                                 data-filterable="false"
+                                 data-bind="source: dokumentDataSource,
+                                                    events:{change:onGridChange}"></div>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onClearAndHide">Anuluj</button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onSave">Zapisz</button>
+        </div>
+    </div>
+</div>

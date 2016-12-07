@@ -1,0 +1,112 @@
+<div class="iwEmuiaWindow"
+     data-role="iwworkplacewindow"
+     data-title="Szczegóły ulic"
+     data-width="430px"
+     data-height="460px"
+     data-min-width="200px"
+     data-min-height="200px"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            scrollable:true
+            }
+           ]"
+         class="iw-spliter">
+        <div>
+            <fieldset>
+                <table class="iw-infotable">
+                    <tbody>
+                    <tr>
+                        <th class="textSzczegoly2">Nazwa:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.Nazwa"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Nazwa skrócona:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaSkr"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Przedrostek 1:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaPrzedrostek1"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Przedrostek 2:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaPrzedrostek2"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Nazwa główna:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaGlowna"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Nazwa w mniejszości:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaMniejszosci"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Nazwa w PESEL:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaPesel"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Nazwa w TERYT:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaTeryt"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Identyfikator w TERYT:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.IdentyfikatorWTeryt"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Działki:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.Dzialki"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Wniosek:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.Wniosek"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Status:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.Status"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Dokumenty:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.Dokumenty"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Ważny od:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.WaznyOd"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Ważny do:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.WaznyDo"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Dodał:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.UserD"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Data dodania:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.DataD"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Zmodyfikował:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.UserM"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Data zmodyfikowania:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.DataM"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Usunął:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.UserK"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Data usuniącia:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.DataK"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="js-dodajEdytujRejestrUlicEmuia"
+     data-title="Dodaj ulicę"
+     data-role="iwworkplacewindow"
+     data-width="300px"
+     data-height="160px"
+     data-min-height="100px"
+     data-min-width="200px"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false
+             },
+            {
+            collapsible: false,
+            resizable: false,
+            size :'40px'
+            }]"
+         class="iw-spliter">
+        <div class="box-table-2">
+            <fieldset>
+                <table class="dodaj-ulice">
+                    <tr>
+                        <td class="textSzczegoly2">Prefix sprawy:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="Id"
+                                   data-text-field="Nazwa"
+                                   data-bind="source:prefixSprawySlo, value:value.prfxSprId"
+                                   style="width: 90%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Sygnatura:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.sprawaNr"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Rok sprawy:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.sprawaRok"
+                                   style="width: 90%;"/></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onClearAndHide">Anuluj</button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onSave">Zapisz</button>
+        </div>
+    </div>
+</div>
+

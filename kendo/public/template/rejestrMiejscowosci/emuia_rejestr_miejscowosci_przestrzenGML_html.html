@@ -1,0 +1,42 @@
+<div class="iwEmuiaWindow"
+     data-role="iwworkplacewindow"
+     data-title="Edytuj przestrzeń nazw GML"
+     data-width="360"
+     data-height="120"
+     data-min-height="120"
+     data-min-width="200"
+     data-bind="window_visible: isVisible">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                size: '40px'
+            }]"
+         class="iw-spliter">
+        <div>
+            <table style="margin-top:10px">
+                <tr>
+                    <td class="textSzczegoly" >Przestrzeń nazw GML:</td>
+                    <td class="bindTextSzczegoly">
+                        <input class="k-textbox"
+                               data-bind="value: data.EmuiaGmlNamespace"
+                               style="font-weight: bold;width: 180px;"/></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onZamknijOkno">
+                Anuluj
+            </button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onZapisz">
+                Zapisz
+            </button>
+        </div>
+    </div>
+</div>

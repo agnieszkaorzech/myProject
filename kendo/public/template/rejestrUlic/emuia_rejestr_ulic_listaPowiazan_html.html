@@ -1,0 +1,52 @@
+<div data-role="iwworkplacewindow"
+     data-width="250"
+     data-height="320"
+     data-min-height="200"
+     data-min-width="200"
+     data-title="Lista powiązań ulicy z działkami"
+     data-bind="window_visible: isVisible">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false,
+                size: '25px'
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                scrollable:true
+            }]"
+         class="iw-spliter">
+        <div id="top-pane" style="overflow: visible;">
+            <div class="pane-content">
+                <div>
+                    <ul data-role="menu"
+                        data-bind="events: { select: onMenuSelect }">
+                        <li data-menu-id="usunPowiazanie"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Usuń powiązanie z ulicą">
+                            <span class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon14"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="grid-kolejka-zadan"
+                 data-role="grid"
+                 data-columns=" [{field: 'obreb', title: 'Obręb', width: 80},
+                                 {field: 'nrDlk', title: 'Numer działki',width: 80 }]"
+                 data-filterable="false"
+                 data-auto-bind="true"
+                 data-selectable="single"
+                 data-resizable="true"
+                 data-sortable="true"
+                 data-bind="source: listaPowiazanDataSource,events: {change: onGridChange}">
+            </div>
+        </div>
+    </div>
+</div>

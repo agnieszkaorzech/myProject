@@ -1,0 +1,76 @@
+<div class="iwEmuiaWindow"
+     data-role="iwworkplacewindow"
+     data-title="Przepinanie adresów"
+     data-width="400"
+     data-height="200"
+     data-min-height="150"
+     data-min-width="200"
+     data-bind="window_visible: isVisible">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                size: '40px'
+            }]"
+         class="iw-spliter">
+        <div  class="box-table-2">
+            <fieldset>
+                <table class="dodaj-ulice">
+                    <tr>
+                        <td class="textSzczegoly2">Miejscowość:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.miejscowoscNazwa"
+                                   style="width:180px"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Ulica:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="k-textbox"
+                                   data-bind="value: value.ulicaNazwa"
+                                   style="width:180px"/></td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Wartość odchodząca:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="id"
+                                   data-text-field="numer"
+                                   data-bind="source:sloAdresyDoPrzepiecia, value:value.adresOdchId"
+                                   style="width:180px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textSzczegoly2">Wartość zastępująca:</td>
+                        <td class="bindTextSzczegoly2">
+                            <input class="inputDropdownlist"
+                                   data-role="dropdownlist"
+                                   data-value-primitive="true"
+                                   data-value-field="id"
+                                   data-text-field="numer"
+                                   data-bind="source:sloAdresyDoPrzepiecia, value:value.adresZastepId"
+                                   style="width:180px"/>
+                        </td>
+                    </tr>
+                </table>
+                <div data-role="tooltip" data-auto-hide="true" data-position="top" data-content="Wartość odchodząca zostanie zastąpiona wartością zastępującą wraz ze wszystkim relacjami"
+                     style="float: right">
+                    <span class="iw-icon iw-icon-informacja iw-icon-color-szukanie  iw-icon14"></span>
+                </div>
+
+            </fieldset>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onClearAndHide">Anuluj</button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onSave">Zapisz</button>
+        </div>
+    </div>
+</div>

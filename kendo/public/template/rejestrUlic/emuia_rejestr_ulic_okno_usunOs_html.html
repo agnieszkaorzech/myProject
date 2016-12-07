@@ -1,0 +1,37 @@
+<div class="js-oknoPotwierdzenia"
+     data-role="iwworkplacewindow"
+     data-title="Uwaga!"
+     data-width="250"
+     data-height="150"
+     data-min-height="100"
+     data-min-width="200"
+     data-bind="window_visible: isVisible">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                size: '50px'
+            }]"
+         class="iw-spliter">
+        <div>
+            <div class="text-okno-potwierdzenia">Czy potwierdzasz usunięcie osi ulicy?</div>
+        </div>
+        <div class="iw-group-buttons">
+            <hr>
+            <button data-role="button"
+                    data-bind="events: { click: onConfirm}">
+                <span class="iw-icon iw-icon-checkmark iw-icon12 iw-icon-menu-dialog"></span>Tak
+            </button>
+            <button data-role="button"
+                    data-bind=" events: { click: onClose }">
+                <span class="iw-icon iw-icon-cross iw-icon12 iw-icon-menu-dialog"></span>Anuluj
+            </button>
+        </div>
+    </div>
+</div>

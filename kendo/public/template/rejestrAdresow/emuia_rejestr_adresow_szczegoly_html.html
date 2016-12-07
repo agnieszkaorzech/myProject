@@ -1,0 +1,92 @@
+<div class="iwEmuiaWindow"
+     data-role="iwworkplacewindow"
+     data-title="Szczegóły adresu"
+     data-width="380px"
+     data-height="355px"
+     data-min-width="200px"
+     data-min-height="200px"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            scrollable:true
+            }
+           ]"
+         class="iw-spliter">
+        <div>
+            <fieldset>
+                <table class="iw-infotable">
+                    <tbody>
+                    <tr>
+                        <th class="textSzczegoly2">Miejscowość:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.miejsc"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Ulica:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.ulica"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Numer porządkowy:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.numer"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Kod:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.kodPoczt"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Pochodzenie:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.emuia"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Status:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.status"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Działki!:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.NazwaTeryt"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Budynki!:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.IdentyfikatorWTeryt"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Wniosek:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.wniosek"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Numer sprawy:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.sprawa"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Zawiadomienie:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.zawiadomienie"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Uwagi:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.uwagi"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Dodał:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.user_id"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Data dodania:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.data_d"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Zmodyfikował:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.userm_id"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Data zmodyfikowania:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: data.data_m"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>

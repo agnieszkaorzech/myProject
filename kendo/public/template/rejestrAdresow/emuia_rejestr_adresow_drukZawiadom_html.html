@@ -1,0 +1,41 @@
+<div data-role="iwworkplacewindow"
+     data-title="Zaświadczenie"
+     data-width="300"
+     data-height="120"
+     data-min-height="100"
+     data-min-width="200"
+     data-bind="window_visible: isVisible">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                size: '40px'
+            }]"
+         class="iw-spliter">
+        <div>
+            <table style="margin-top:10px">
+                <tr>
+                    <td class="textSzczegoly">Sprawę prowadzi:</td>
+                    <td class="bindTextSzczegoly">
+                        <input class="k-textbox"
+                               data-bind="value: data.spraweProwadzi"
+                               style="font-weight: bold; width: 160px;"/></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onClearAndHide">
+                Anuluj
+            </button>
+            <button class="k-button k-button-edycja-emuia" data-bind="click: onDownload">
+                Pobierz
+            </button>
+        </div>
+    </div>
+</div>

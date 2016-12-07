@@ -1,0 +1,156 @@
+<div class="petentPetenciKartoteka"
+     data-role="iwworkplacewindow"
+     data-width="1100"
+     data-height="380"
+     data-min-height="350"
+     data-min-width="800"
+     data-navigable="true"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="horizontal"
+         data-panes="
+            [{
+                collapsible: true,
+                resizable: false,
+                size: '350px'
+            },{
+                collapsible: false,
+                scrollable: false
+            }]"
+         class="iw-spliter">
+        <div>
+            <div data-role="splitter"
+                 data-orientation="vertical"
+                 data-panes="
+                    [{
+                        collapsible: false,
+                        resizable: false,
+                        scrollable: true
+                    },{
+                        collapsible: false,
+                        resizable: false,
+                        scrollable: false,
+                        size: '40px'
+                    }]"
+                 class="iw-spliter">
+                <div class="searchForm">
+                    <div>
+                        <div class="iw-search-row">
+                            <span class="iw-search-row-label-dok">Rodzaj dokumentu:</span>
+                            <div class="iw-search-row-input-dok">
+                                <input data-role="dropdownlist"
+                                       data-value-primitive="true"
+                                       data-value-field="Id"
+                                       data-text-field="Nazwa"
+                                       data-bind="source:sloDokumenty, value: filter.RodzajDokId"
+                                       style="width:88%;"/></div>
+                            <div class="pauzaDodajEmuia"></div>
+                        </div>
+                        <div class="iw-search-row">
+                            <span class="iw-search-row-label-dok">Sygnatura dokumentu</span>
+                            <span class="iw-search-row-input-dok" data-role="iwsearchuppertextwidget"
+                                  data-bind="iw_percent: filter.Sygnatura"></span>
+                            <div class="pauzaDodajEmuia"></div>
+                        </div>
+                        <div class="iw-search-row">
+                            <span class="iw-search-row-label-dok">Wydany przez:</span>
+                            <span class="iw-search-row-input-dok" data-role="iwsearchuppertextwidget"
+                                  data-bind="iw_percent: filter.WydanyPrzez"></span>
+                            <div class="pauzaDodajEmuia"></div>
+                        </div>
+                        <div class="iw-search-row">
+                            <span class="iw-search-row-label-dok">Numer w wydziale:</span>
+                            <span class="iw-search-row-input-dok" style="display: inline-block;">
+                            <input class="k-textbox"
+                                   data-bind="value: filter.NrKol"
+                                   style="width: 40%;"/>/
+                            <input class="k-textbox"
+                                   data-bind="value: filter.NrRok"
+                                   style="width: 42%;"/></span>
+                            <div class="pauzaDodajEmuia"></div>
+                        </div>
+                        <div class="iw-search-row">
+                            <span class="iw-search-row-label-dok">Data dokumentu</span>
+                            <div class="iw-search-row-input-dok">
+                                <input data-role="datepicker"
+                                       data-format="yyyy-MM-dd"
+                                       data-bind="value: filter.DataDok"
+                                       style="width:88%;"/></div>
+                            <div class="pauzaDodajEmuia"></div>
+                        </div>
+                        <div class="iw-search-row">
+                            <span class="iw-search-row-label-dok">Data wpływu</span>
+                            <div class="iw-search-row-input-dok">
+                                <input data-role="datepicker"
+                                       data-format="yyyy-MM-dd"
+                                       data-bind="value: filter.DataWplywu"
+                                       style="width:88%;"/></div>
+                            <div class="pauzaDodajEmuia"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="float: right; padding: 5px">
+                        <button class="k-button" data-bind="click: onClearAndHide" style="width: 120px">
+                            Wyczyść filtr
+                        </button>
+                        <button class="k-button"
+                                data-bind="events: { click: onFilterApply }, css: { button-filter-changed: hasFilterChanged }"
+                                style="width: 120px">
+                            Zastosuj filtr
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div data-role="splitter"
+                 data-orientation="vertical"
+                 data-panes="
+                        [{
+                        collapsible: false,
+                        resizable: false,
+                        scrollable: false
+                        },
+                        {
+                         collapsible: false,
+                         scrollable: false,
+                         resizable: false,
+                         size: '40px'
+                        }]"
+                 style="height: 100%; width: 100%;">
+                <div>
+                    <div class="dokumenty-emuia"
+                         data-role="grid"
+                         data-columns="
+                                 [{field: 'NazwaRodzDok', title: 'Rodzaj', width:80},
+                                 {field: 'Sygnatura', title: 'Sygnatura',width: 100 },
+                                 {field: 'NrWWydz', title: 'Nr w wydziale', width: 80},
+                                 {field: 'WydanyPrzez',title: 'Wydany przez',width: 90},
+                                 {field: 'DataDok', title: 'Data dok.',width: 70},
+                                 {field: 'DataWplywu', title: 'Data wpływu',width: 70},
+                                 {field: 'Opis', title: 'Opis',width: 120}]"
+                         data-selectable="row"
+                         data-resizable="true"
+                         data-sortable="true"
+                         data-pageable="
+                             {
+                            refresh: true,
+                            pageSizes: [20, 50, 100],
+                            buttonCount: 5,
+                            pageSize: 20
+                            }"
+                         data-filterable="false"
+                         data-bind="source: pokazDokumentDS, events: {change: onGridChange}"
+                         style="height: 100%; width: 100%;"></div>
+                </div>
+                <div>
+                    <div style="padding: 5px; float: right;">
+                        <button class="k-button" data-bind="click: onCancelSelectOne"> Anuluj</button>
+                        <button class="k-button" data-bind="click: onConfirmSelectOne"> Wybierz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="okno_slownikow"
+     data-role="iwworkplacewindow"
+     data-width="400"
+     data-height="170"
+     data-min-height="120"
+     data-min-width="200"
+     data-bind="window_visible: isVisible, events:{close:windowClose}"
+     data-actions="['Close']">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+                collapsible: false,
+                resizable: false
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                size: '30px'
+            }]"
+         class="iw-spliter">
+        <div>
+            <div class="labelDodajuklad">Wybierz obręby z listy:</div>
+            <div class="imputsDodajUklad">
+                <select data-role="multiselect"
+                        data-text-field="Nazwa"
+                        data-value-primitive="false"
+                        data-value-field="Id"
+                        data-bind="source: slownikObreby,
+                                    visible: isVisibleMultiselect,
+                                    enabled: isEnabled,
+                                    value: obrebySelected"
+                        style="width: 375px;margin: 5px;"></select>
+            </div>
+        </div>
+        <div>
+            <button class="k-button"
+                    data-bind="events: { click: onDodajObreb }"
+                    style="width: 100%;">Dodaj
+            </button>
+        </div>
+    </div>
+</div>

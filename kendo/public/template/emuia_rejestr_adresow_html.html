@@ -1,0 +1,578 @@
+<div data-role="iwworkplacewindow"
+     data-bind="window_visible: isVisible, events:{close:windowClose}"
+     data-title="Rejestr adresów"
+     data-width="1150"
+     data-height="500"
+     data-min-height="420"
+     data-navigatable="true"
+     data-actions="['Minimize','Maximize','Close']">
+    <div data-role="splitter"
+         data-orientation="horizontal"
+         data-panes="
+                    [{
+                        collapsible: true,
+                        scrollable: false,
+                        size: '220px'
+                    },
+                    {
+                        collapsible: false,
+                        scrollable: false
+                    }]"
+         style="height: 100%; width: 100%;">
+        <div data-role="splitter"
+             data-orientation="vertical"
+             data-panes="
+                [{
+                collapsible: false,
+                resizable: false,
+                size: '200px'
+                 },{
+                collapsible: false,
+                resizable: false,
+                size: '30px'
+                 },{
+                 collapsible: false,
+                 scrollable: false,
+                 resizable: false,
+                 size: '300px'
+                 }]"
+             style="height: 100%; width: 100%;">
+            <div>
+                <ul data-role="panelbar">
+                    <li class="k-state-active">
+                        Filtr
+                        <div style="padding: 10px;">
+                            <div>
+                                <span>Miejscowość</span>
+                                <input style="width: 175px"
+                                       data-role="dropdownlist"
+                                       data-value-primitive="false"
+                                       data-text-field="Nazwa"
+                                       data-value-field="Id"
+                                       data-option-label="Wybierz miejscowość"
+                                       data-bind="source: sloMiejscowosci,
+                                                                  value:selectedMiejscowosc,
+                                                                  events: {change: selectedMiejscowoscFunction}"/>
+                            </div>
+                        </div>
+                        <div style="padding: 10px;">
+                              <span data-role="tooltip"
+                                    data-auto-hide="true"
+                                    data-position="top"
+                                    data-width="200px"
+                                    data-content="Aby przefiltrować rozpocznij wpisywać nazwę ulicy.">
+                              <input id="autompleteUlice"
+                                     class="k-textbox"
+                                     style="width: 180px"
+                                     data-role="autocomplete"
+                                     data-value-primitive="true"
+                                     data-text-field="nazwa"
+                                     data-value-field="id"
+                                     placeholder="Filtruj ulicę ..."
+                                     data-bind="source: ulicaDataSource"/></span>
+                        </div>
+                        <div style="padding: 10px;">
+                              <span data-role="tooltip"
+                                    data-auto-hide="true"
+                                    data-position="top"
+                                    data-width="200px"
+                                    data-content="Aby przefiltrować rozpocznij wpisywać numer porządkowy.">
+                              <input id="autompleteAdresy"
+                                     class="k-textbox"
+                                     style="width: 180px"
+                                     data-role="autocomplete"
+                                     data-value-primitive="true"
+                                     data-text-field="numer"
+                                     data-value-field="id"
+                                     placeholder="Filtruj adres ..."
+                                     data-bind="source: adresyDataSource"/></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pane-content">
+                <ul data-role="menu"
+                    data-bind="events: { select: onMenuSelect }">
+                    <li data-menu-id="szczegolyUlic"
+                        data-role="tooltip"
+                        data-auto-hide="true"
+                        data-position="top"
+                        data-content="Szczegóły ulicy">
+                        <span class="iw-icon iw-icon-informacja  iw-icon12"></span>
+                    </li>
+                    <li data-menu-id="pokazArchiwizowaneUl"
+                        data-title="Zobacz archiwalne ulice"
+                        data-role="tooltip"
+                        data-auto-hide="true"
+                        data-position="top">
+                        <i class="iw-icon iw-icon-archiwum iw-icon12"></i>
+                    </li>
+                </ul>
+            </div>
+            <div id="gridUlice"
+                 data-role="grid"
+                 data-columns="
+                 [{
+                 field: 'nazwa',
+                 title: 'Ulica',
+                 width: '80'
+                }]"
+                 data-bind="source:ulicaDataSource, events:{change:onGridChangeUlice, dataBound:onDataBound}"
+                 data-selectable="row"
+                 data-resizable="true"
+                 data-sortable="true">
+            </div>
+        </div>
+        <div>
+            <div data-role="splitter"
+                 data-orientation="vertical"
+                 data-panes="
+            [{
+                collapsible: false,
+                resizable: false,
+                 scrollable: false
+
+            },
+             {
+                collapsible: false,
+                resizable: false,
+                 scrollable: false
+            },
+            {
+                collapsible: false,
+                resizable: false,
+                scrollable: false
+            }]
+         " style="height: 100%; width: 100%;">
+                <div data-role="splitter"
+                     data-orientation="vertical"
+                     data-panes="
+                [{
+                collapsible: false,
+                resizable: false,
+                 size: '30px'
+                 },
+                  {
+                    collapsible: false,
+                     scrollable: false
+                 }]"
+                     style="height: 100%; width: 100%;">
+                    <div id="top-pane" style="overflow: visible; ">
+                        <div class="pane-content">
+                            <div>
+                                <ul data-role="menu"
+                                    data-bind="events: { select: onMenuSelect }">
+                                    <li data-menu-id="szczegolyAdres"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Szczegóły numeru porządkowego">
+                                        <span class="iw-icon iw-icon-informacja iw-icon12"></span>
+                                    </li>
+                                    <li data-menu-id="dodajAdres"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Dodaj nowy numer porządkowy">
+                                        <span class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon12 "></span>
+                                    </li>
+                                    <li data-menu-id="edytujAdres"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Edytuj numer porządkowy">
+                                        <span class="iw-icon iw-icon-edycja iw-icon-color-edycja iw-icon12 "></span>
+                                    </li>
+                                    <li data-menu-id="usunNumerPrz"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Usuń numer porządkowy">
+                                        <span class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon12 "></span>
+                                    </li>
+                                    <li data-menu-id="pokazArchiwizowane"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Zobacz archiwalne adresy">
+                                        <span class="iw-icon iw-icon-archiwum  iw-icon14"></span>
+                                    </li>
+                                    <li data-menu-id="toArchiwum"
+                                        data-title="Przenieś do archiwum"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top">
+                                        <span class="iw-icon iw-icon-archiwum-usun iw-icon-color-edycja iw-icon14"></span>
+                                    </li>
+                                    <li data-menu-id="fromArchiwum"
+                                        data-title="Przywróć z archiwum"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top">
+                                        <span class="iw-icon iw-icon-archiwum-dodaj iw-icon-green iw-icon14"></span>
+                                    </li>
+                                    <li aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Przypisz adres do działki/budynku"
+                                        disabled>
+                                        <span class="iw-icon iw-icon-przypnij iw-icon12 iw-icon-yellow"></span>
+                                    </li>
+                                    <li aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Przypisz adres do działki/budynku(dodatkowo dodaje punkt adresowy do mapy)"
+                                        disabled>
+                                        <span class="iw-icon iw-icon-przypnij iw-icon12 iw-icon-yellow"></span>
+                                    </li>
+                                    <li data-menu-id="przepinajAdresy"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Przepinanie adresów">
+                                        <span class="iw-icon iw-icon-przepnij iw-icon12"></span>
+                                    </li>
+                                    <li>
+                                        <span class="iw-icon iw-icon-file-text2 iw-icon12 iw-icon-menu-dialog iw-icon-blue"></span>Wniosek
+                                        <ul>
+                                            <li data-menu-id="dodNowWniosek"><span
+                                                    class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Dodaj
+                                                nowy wniosek
+                                            </li>
+                                            <li data-menu-id="dodIstWniosek"><span
+                                                    class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Dodaj
+                                                istniejący wniosek
+                                            </li>
+                                            <li data-menu-id="usunWniosek"><span
+                                                    class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon-menu-dialog iw-icon10 "></span>Odłącz
+                                                wniosek
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="iw-icon iw-icon-file-text2 iw-icon12 iw-icon-menu-dialog iw-icon-blue"></span>Zawiadomienie
+                                        <ul>
+                                            <li data-menu-id="dodNowZawiadomienie"><span
+                                                    class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Dodaj
+                                                nowe zawiadomenie
+                                            </li>
+                                            <li data-menu-id="dodIstZawiadomienie"><span
+                                                    class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Dodaj
+                                                istniejące zawiadomenie
+                                            </li>
+                                            <li data-menu-id="usunZawiadomienie"><span
+                                                    class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Odłącz
+                                                zawiadomienie
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Drukuj">
+                                        <span class="iw-icon iw-icon-drukarka iw-icon12"></span>
+                                        <ul>
+                                            <li disabled data-menu-id="printZawiad"><span
+                                                    class="iw-icon iw-icon-menu-dialog"></span>Zawiadomienie
+                                            </li>
+                                            <li data-menu-id="printZaswiadcz"><span
+                                                    class="iw-icon iw-icon-menu-dialog"></span>Zaświadczenie
+                                            </li>
+                                            <li disabled data-menu-id="printZalGraficzny"><span
+                                                    class="iw-icon iw-icon-menu-dialog"></span>Załacznik graficzny
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div data-role="grid"
+                             class="gridAdresy"
+                             data-columns="
+                             [{
+                                 field: 'numer',
+                                 title: 'Numer',
+                                 width:  60
+                                 }, {
+                                field: 'wniosek',
+                                title: 'Wniosek'
+                                 }, {
+                                field: 'sprawa',
+                                title: 'Numer sprawy'
+                                 }, {
+                                field: 'zawiadomienie',
+                                title: 'Zawiadomienie'
+                                 },{
+                                 field: 'kodPoczt',
+                                 title: 'Kod',
+                                 width:  60
+                                 }, {
+                                 field: 'emuia',
+                                 title: 'Pochodzenie'
+                                },{
+                                 field: 'status',
+                                 title: 'Status'
+                                }]"
+                             data-bind="source:adresyDataSource, events:{change:onGridChangeAdresy, dataBound: onDataBoundAdresy}"
+                             data-selectable="row"
+                             data-resizable="true"
+                             data-sortable="true"
+                             data-filterable="false"
+                             style="height: 100%; width: 100%;"></div>
+                    </div>
+                </div>
+                <div data-role="splitter"
+                     data-orientation="vertical"
+                     data-panes="
+                    [{
+                         collapsible: false,
+                        resizable: false,
+                        size: '30px'
+                    },
+                    {
+                        collapsible: false,
+                        scrollable: false
+                        }]
+                      " style="height: 100%; width: 100%; border: none;">
+                    <div style="overflow: visible;">
+                        <div class="pane-content">
+                            <div>
+                                <ul data-role="menu"
+                                    data-bind="events: { select: onMenuSelect }">
+                                    <li><span class="iw-icon-menu-dialog"></span>Lista działek/budynków powiązanych z
+                                        adresem
+                                    </li>
+                                    <li data-menu-id="szczegolyListaDzBud"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Szczegóły punktu adresowego">
+                                        <span class="iw-icon iw-icon-informacja iw-icon12 "></span>
+                                    </li>
+                                    <li aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Elementy budynku reprezentujący punkt adresowy">
+                                        <span class="iw-icon iw-icon-budynek iw-icon12"></span>
+                                        <ul>
+                                            <li data-menu-id="srodekSciana"><span
+                                                    class="iw-icon iw-icon10 iw-icon-menu-dialog"></span>Środek ściany
+                                                budynku
+                                            </li>
+                                            <li data-menu-id="srodekWejscie"><span
+                                                    class="iw-icon iw-icon-menu-dialog"></span>Środek wejścia do budynku
+                                            </li>
+                                            <li data-menu-id="srodekCiezkowosci"><span
+                                                    class="iw-icon iw-icon-color-edycja iw-icon-menu-dialog"></span>Środek
+                                                ciężkości budynku
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li data-menu-id="pokazListeXY"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Pokaż tylko adresy osadzone na mapie">
+                                        <span class="iw-icon iw-icon-binoculars iw-icon12"></span>
+                                    </li>
+                                    <li data-menu-id="addOsadzenieAdres"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Osadź/Edytuj adres na mapie">
+                                        <span class="iw-icon iw-icon-mapa-pokaz iw-icon-color-szukanie iw-icon12 "></span>
+                                    </li>
+                                    <li data-menu-id="usunOsadzenieAdres"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Usuń osadzenie punktu adresowego">
+                                        <span class="iw-icon iw-icon-mapa-czysc iw-icon-color-szukanie iw-icon12"></span>
+                                    </li>
+                                    <li data-menu-id="usunEBAdres"
+                                        aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Usuń adres z działki/budynku">
+                                        <span class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon12"></span>
+                                    </li>
+                                    <li aria-hidden="true"
+                                        data-role="tooltip"
+                                        data-auto-hide="true"
+                                        data-position="top"
+                                        data-content="Generuj pilk GML dla zaznaczonych adresów"
+                                        disabled>
+                                        <span class="iw-icon iw-icon-menu-dialog iw-icon12"></span>< GML>
+                                    </li>
+                                    <li>
+                                        <button data-bind="events:{click:onClick}"></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div data-role="grid"
+                             class="gridAdresy"
+                             data-columns="
+                                [{
+                                    field: 'lp',
+                                    title: 'Lp.',
+                                    width: 50
+                                    }, {
+                                    field: 'nrDlk',
+                                    title: 'Działka',
+                                    width: 60
+                                     },{
+                                    field: 'nieruchId',
+                                    title: 'Budynek',
+                                    width: 70
+                                     },{
+                                    field: 'obreb',
+                                    title: 'Obręb',
+                                    width: 100
+                                    },{
+                                    field: 'elReprezent',
+                                    title: 'Środek',
+                                    width: 80
+                                    }, {
+                                    field: 'wsp_x',
+                                    title: 'Wsp. X',
+                                    width: 90
+                                    },{
+                                    field: 'wsp_y',
+                                    title: 'Wsp. Y',
+                                    width: 90
+                                     },{
+                                    field: 'utworzyl',
+                                    title: 'Utworzono'
+                                     },{
+                                    field: 'zmodyfikowal',
+                                    title: 'Zmodyfikowano'
+                                    }]"
+                             data-selectable="row"
+                             data-resizable="true"
+                             data-sortable="true"
+                             data-filterable="false"
+                             data-bind="source:adresyDzBudDataSource, events:{change:onGridDzBudChangeAdresy}"
+                             style="height: 100%; width: 100%;"></div>
+                    </div>
+                </div>
+                <div data-bind="iw_splitter_tab_visible: selectOnePanelVisible">
+                    <div data-role="splitter"
+                         data-orientation="vertical"
+                         data-panes="
+            [{
+                collapsible: false,
+                resizable: false,
+                size: '30px'
+            },
+            {
+                collapsible: false,
+                 scrollable: false
+            }]" style="height: 100%; width: 100%;">
+                        <div style="overflow: visible;">
+                            <div class="pane-content">
+                                <div>
+                                    <ul data-role="menu"
+                                        data-bind="events: { select: onMenuSelect }">
+                                        <li><span class="iw-icon-menu-dialog"></span>Punkt adresowy projektowany:
+                                        </li>
+                                        <li disabled>
+                                            <span class="iw-icon iw-icon-search iw-icon12 iw-icon-menu-dialog"></span>Podgląd
+                                            <ul>
+                                                <li data-menu-id="pokazArchPkt"><span
+                                                        class="iw-icon iw-icon-mapa-pokaz iw-icon12 iw-icon-menu-dialog"></span>Pokaż
+                                                    archiwalne punkty adresowe projektowane
+                                                </li>
+                                                <li data-menu-id="podgladPktAdr"><span
+                                                        class="iw-icon iw-icon-podglad-mapa iw-icon12 iw-icon-menu-dialog"></span>Podgląd
+                                                    punktu
+                                                    adresowanego projektowanego
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li disabled><span
+                                                class="iw-icon iw-icon-pushpin iw-icon12 iw-icon-menu-dialog"></span>Zmiany
+                                            <ul>
+                                                <li data-menu-id="dodPktProj"><span
+                                                        class="iw-icon iw-icon-dodaj iw-icon-color-edycja  iw-icon12 iw-icon-menu-dialog "></span>Dodaj
+                                                    nowy punkt adresowy projektowany
+                                                </li>
+                                                <li data-menu-id="usunPktPtoj"><span
+                                                        class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon12 iw-icon-menu-dialog "></span>Usuń
+                                                    punkt adresowy projektowany
+                                                </li>
+                                                <li data-menu-id="stanArch"><span
+                                                        class="iw-icon iw-icon-archiwum iw-icon12 iw-icon-menu-dialog"></span>Przeniesienie
+                                                    do stanu archiwalnego
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li style="vertical-align: middle"
+                                            aria-hidden="true"
+                                            data-role="tooltip"
+                                            data-auto-hide="true"
+                                            data-position="right"
+                                            data-content="Szczegóły punktu adresu projektowanego"
+                                            disabled>
+                                            <span class="iw-icon iw-icon-informacja iw-icon12 iw-icon-menu-dialog"></span>Szczegóły
+                                        </li>
+                                        <li style="vertical-align: middle"
+                                            aria-hidden="true"
+                                            data-role="tooltip"
+                                            data-auto-hide="true"
+                                            data-position="right"
+                                            data-content="Wrysuj na mapie"
+                                            disabled>
+                                            <span class="fa iw-icon-wrysowanie-mapa iw-icon12 iw-icon-menu-dialog"></span>Wrysuj
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div data-role="grid"
+                                 class="gridAdresy"
+                                 data-columns="
+                                        [{
+                                            field: 'Numer',
+                                            title: 'Numer'
+                                         }, {
+                                            field: 'WspX',
+                                            title: 'Wsp. X'
+                                        }, {
+                                            field: 'WspY',
+                                            title: 'Wsp. Y'
+                                        }, {
+                                            field: 'Stan',
+                                            title: 'Stan'
+                                        }]"
+                                 data-selectable="row"
+                                 data-resizable="true"
+                                 data-sortable="true"
+                                 style="height:100%; width: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

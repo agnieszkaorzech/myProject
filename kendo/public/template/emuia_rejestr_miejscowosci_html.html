@@ -1,0 +1,104 @@
+<div class="windowRejestrMiejscowosci"
+     data-role="iwworkplacewindow"
+     data-bind="window_visible: isVisible,events:{close:windowClose}"
+     data-title="Rejestr Miejscowości"
+     data-width="480"
+     data-height="300"
+     data-navigatable="true"
+     data-actions="['Minimize','Maximize','Close']">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            size: '30px'},
+            {
+            collapsible: false,
+            resizable: false,
+            scrollable:false
+            }]"
+         class="iw-spliter">
+        <div style="overflow: visible;">
+            <div>
+                <div id="filtrMiejscAutocomlete">
+                    <ul data-role="menu"
+                        data-bind="events: { select: onMenuSelect }">
+                        <li>
+                            <input style="width: 150px"
+                                   data-role="autocomplete"
+                                   data-placeholder="Filtr miejscowości"
+                                   data-value-primitive="true"
+                                   data-text-field="Nazwa"
+                                   data-value-field="Id"
+                                   data-bind="source: sloMiejscowosciDS,
+                                                      events: {visible: isVisibleFiltr,
+                                                               enabled: isEnabled}"/>
+                        </li>
+                        <li data-menu-id="szczegoly"
+                            data-title="Szczegóły"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"><span class="iw-icon iw-icon-informacja iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="dodajM"
+                            data-title="Dodaj nową miejscowość"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"><span
+                                class="iw-icon iw-icon-dodaj iw-icon-red iw-icon14 "></span>
+                        </li>
+                        <li data-menu-id="edytujM"
+                            data-title="Edytuj miejscowość"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"><span
+                                class="iw-icon iw-icon-edycja iw-icon14 iw-icon-red "></span>
+                        </li>
+                        <li data-menu-id="gml"
+                            data-title="Generuj GML"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"><span class="iw-icon iw-icon14 iw-icon-menu-dialog"></span>GML
+                            <ul>
+                                <li data-menu-id="gmlMiejsc">Miejscowość</li>
+                                <li data-menu-id="gmlGmina">Gmina</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="rejestrMiejsowosciGrid"
+             data-role="grid"
+             data-columns="
+                 [{
+                 field: 'Nazwa',
+                 title: 'Miejscowość',
+                 width:100
+                },
+                {
+                 field: 'NazwaTeryt',
+                 title: 'Nazwa w TERYT',
+                 width:70
+                },
+                 {
+                 field: 'IdWTeryt',
+                 title: 'Id w TERYT',
+                 width: 70
+                },
+                 {
+                 field: 'RodzMsc',
+                 title: 'Rodzaj',
+                 width: 50
+                },
+
+                ]"
+             data-selectable="single row"
+             data-resizable="false"
+             data-sortable="false"
+             data-bind="source: sloMiejscowosciDS,
+                                events:{change:onGridChange}">
+        </div>
+    </div>
+</div>

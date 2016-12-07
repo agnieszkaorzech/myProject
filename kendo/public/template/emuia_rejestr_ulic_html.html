@@ -1,0 +1,260 @@
+<div class="emuiaRejestrUlic"
+     data-role="iwworkplacewindow"
+     data-title="Rejestr Ulic"
+     data-bind="window_visible: isVisible, events:{close:windowClose}"
+     data-width="900"
+     data-height="420"
+     data-min-height="420"
+     data-navigatable="true"
+     data-actions="['Minimize','Maximize','Close']">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            size: '30px'},
+            {
+            collapsible: false,
+            resizable: false}
+            ]"
+         class="iw-spliter">
+        <div id="top-pane" style="overflow: visible;">
+            <div class="pane-content">
+                <div>
+                    <ul data-role="menu"
+                        data-bind="events: { select: onMenuSelect }">
+                        <li data-menu-id="szczegolyUlic"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Szczegóły ulicy">
+                            <span class="iw-icon iw-icon-informacja  iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="dokumentyPowiazane"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Dokumenty powiązane z ulicą">
+                            <span class="iw-icon iw-icon-dokumenty-przychodzace iw-icon14">
+                            </span>
+                        </li>
+                        <li data-menu-id="dodajUlice"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Dodaj nową ulicę">
+                            <span class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="edytujUlice"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Edytuj ulicę">
+                            <span class="iw-icon iw-icon-edycja iw-icon-color-edycja iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="usunUlice"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Usuń ulicę">
+                            <span class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="pokazArchiwizowane"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Zobacz archiwalne ulice">
+                            <span class="iw-icon iw-icon-archiwum  iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="toArchiwum"
+                            data-title="Przenieś do archiwum"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top">
+                            <span class="iw-icon iw-icon-archiwum-usun iw-icon-color-edycja iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="fromArchiwum"
+                            data-title="Przywróć z archiwum"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top">
+                            <span class="iw-icon iw-icon-archiwum-dodaj iw-icon-green iw-icon14"></span>
+                        </li>
+                        <li data-menu-id="przepnijUlice"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Przepinanie ulic">
+                            <span class="iw-icon iw-icon-przepnij iw-icon14 "></span>
+                        </li>
+                        <li data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Przypnij działkę do ulicy">
+                            <span class="iw-icon iw-icon-przypnij iw-icon14 iw-icon-yellow "></span>
+                            <ul>
+                                <li data-menu-id="kartotekaDzialek"><span
+                                        class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Z kartoteki
+
+                                </li>
+                                <li data-menu-id="mapa"><span
+                                        class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon-menu-dialog iw-icon10 "></span>Z mapy
+
+                                </li>
+                                <li data-menu-id="listaPowiazanUl"><span
+                                        class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon-menu-dialog iw-icon10 "></span>Lista powiązań
+                                </li>
+                            </ul>
+                        </li>
+                        <li data-menu-id="pokazUlicePowZMapa"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Zobacz działki związane z ulicą">
+                            <span class="iw-icon iw-icon-mapa-pokaz iw-icon14 "></span>
+                        </li>
+                        <li disabled
+                            data-menu-id="raportNrPorz"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Generuj raport z num.porządkowymi dla ulicy">
+                            <span class="iw-icon iw-icon-printer iw-icon14"></span>
+                        </li>
+                        <li>
+                            <span class="iw-icon iw-icon12 iw-icon-menu-dialog"></span>Oś
+                            <ul>
+                                <li data-menu-id="dodajOs"><span
+                                        class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Dodaj
+                                    oś ul.
+                                </li>
+                                <li data-menu-id="usunOs"><span
+                                        class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon-menu-dialog iw-icon10 "></span>Usuń
+                                    oś ul.
+                                </li>
+                            </ul>
+                        </li>
+                        <li disabled >
+                            <span class="iw-icon iw-icon12 iw-icon-menu-dialog"></span>Opis
+                            <ul>
+                                <li disabled><span class="iw-icon iw-icon-dodaj iw-icon-color-edycja iw-icon10 iw-icon-menu-dialog "></span>Dodaj
+                                    opis ul.
+                                </li>
+                                <li data-menu-id="usunOpis"><span class="iw-icon iw-icon-usun iw-icon-color-edycja iw-icon-menu-dialog iw-icon10 "></span>Usuń
+                                    opis ul.
+                                </li>
+                            </ul>
+                        </li>
+                        <li data-content="Generuj plik GML dla zaznaczonej ulicy."
+                            disabled>
+                            <span class="iw-icon iw-icon-menu-dialog"></span>< GML>
+                        </li>
+                        <li data-menu-id="dodajAdresDoUlicy"
+                            data-role="tooltip"
+                            data-auto-hide="true"
+                            data-position="top"
+                            data-content="Dodaj adres do ulicy">
+                            <span class="fa fa-plus-circle iw-icon-color-edycja iw-icon-color-edycja iw-icon14"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div data-role="splitter"
+                 data-orientation="horizontal"
+                 data-panes="
+                    [{
+                        collapsible: false,
+                        size: '230px'
+                    },
+                    {
+                        collapsible: false,
+                        scrollable: false
+                    }]"
+                 style="height: 100%; width: 100%;">
+                <div>
+                    <div data-role="splitter"
+                         data-orientation="vertical"
+                         data-panes="
+                           [{
+                                collapsible: false,
+                                resizable: false
+
+                            },
+                            {
+                                collapsible: false,
+                                resizable: false,
+                                size: '35px'
+                            }]"
+                         style="height: 100%; width: 100%;">
+                        <div>
+                            <div>
+                                <ul data-role="panelbar">
+                                    <li class="k-state-active">
+                                        Filtr
+                                        <div style="padding: 10px;">
+                                            <div>
+                                                <input style="width: 180px"
+                                                       data-role="dropdownlist"
+                                                       data-value-primitive="false"
+                                                       data-text-field="Nazwa"
+                                                       data-value-field="Id"
+                                                       data-option-label="Wybierz miejscowość"
+                                                       data-bind="source: sloMiejscowosci,
+                                                                  value:selectedMiejscowosc,
+                                                                  events: {change: selectedMiejscowoscFunction}"/>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 10px;">
+                                            <div>
+                                                <span data-role="tooltip"
+                                                      data-auto-hide="true"
+                                                      data-position="top"
+                                                      data-width="200px"
+                                                      data-content="Aby przefiltrować rozpocznij wpisywać nazwę ulicy.">
+                                                <input id="autompleteUlice"
+                                                       class="k-textbox"
+                                                       style="width: 180px"
+                                                       data-role="autocomplete"
+                                                       data-value-primitive="true"
+                                                       data-text-field="nazwa"
+                                                       data-value-field="id"
+                                                       placeholder="Filtruj ulicę ..."
+                                                       data-bind="source: ulicaDataSource"/></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="k-button"
+                                 data-role="button"
+                                 data-bind="events: { click: onClickToRejestrAdresow }"
+                                 style="width: 100%">
+                                Przejdź do rejestru adresów
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-role="grid"
+                     data-auto-bind="false"
+                     data-columns="
+                    [{field: 'nazwa',title: 'Ulica',width:  140},
+                    {field: 'dok', title: 'Dokument', width:  100},
+                    {field: 'nazwa_pesel',title: 'Nazwa w PESEL',width: 140},
+                    {field: 'os',title: 'Oś',width:  40}]"
+                     data-selectable="row"
+                     data-resizable="true"
+                     data-sortable="true"
+                     data-bind="source: ulicaDataSource,
+                                events:{change:onGridChange,dataBound: onDataBound}"
+                     style="height: 100%; width: 100%;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

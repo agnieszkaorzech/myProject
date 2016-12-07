@@ -1,0 +1,80 @@
+<div class="iwEmuiaWindow"
+     data-role="iwworkplacewindow"
+     data-width="380px"
+     data-height="355px"
+     data-min-width="200px"
+     data-min-height="200px"
+     data-bind="window_visible: isVisible, window_title: title">
+    <div data-role="splitter"
+         data-orientation="vertical"
+         data-panes="
+            [{
+            collapsible: false,
+            resizable: false,
+            scrollable:true
+            }
+           ]"
+         class="iw-spliter">
+        <div>
+            <fieldset>
+                <table class="iw-infotable">
+                    <tbody>
+                    <tr>
+                        <th class="textSzczegoly2">Rodzaj:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.rodzaj"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Miejscowość:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataAdres.miejsc"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Ulica:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataAdres.ulica"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Numer porządkowy:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataAdres.numer"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Status:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataAdres.status"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Element budynku reprezentujący punkt adresowy:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.elReprezent"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Pochodzenie:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataAdres.emuia"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Działka:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.nrDlk"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Budynek:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.nieruchId"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Współrzędna X:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.wsp_x"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Współrzędna Y:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.wsp_y"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Utworzył:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.utworzyl"></td>
+                    </tr>
+                    <tr>
+                        <th class="textSzczegoly2">Zmodyfikował:</th>
+                        <td class="bindTextSzczegoly2" data-bind="text: dataLista.zmodyfikowal"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
